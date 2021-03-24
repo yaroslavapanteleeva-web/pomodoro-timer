@@ -1,0 +1,14 @@
+@import '../base/variables';
+
+.main {
+    padding: 48px 0 56px;
+    width: 100%;
+    height: 100%;
+    background: $background-main;
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr);
+    grid-template-rows: .5fr .75fr 4.8fr .5fr;
+    align-items: center;
+    justify-items: center;
+    row-gap: 45px;
+}

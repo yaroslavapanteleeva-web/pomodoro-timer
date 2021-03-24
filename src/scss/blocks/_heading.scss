@@ -1,0 +1,10 @@
+@import '../base/variables';
+
+.heading {
+    margin: 0;
+    font-family: $font-kumbhSans;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    color: $color-text-disabled;
+}

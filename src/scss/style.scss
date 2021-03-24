@@ -1,0 +1,22 @@
+@import "~normalize.css";
+
+@import 'libs/fonts';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@import './blocks/main';
+@import './blocks/heading';
+@import './blocks/tabs';
+@import './blocks/timer';
+@import './blocks/settings';
+@import './blocks/progress-bar';;
+
+@import './base/media.scss';
