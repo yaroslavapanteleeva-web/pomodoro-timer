@@ -1,0 +1,13 @@
+@import '../base/variables';
+
+.clock-face {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $font-kumbhSans;
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 100px;
+    letter-spacing: -5px;
+    color: $color-clock-face;
+}

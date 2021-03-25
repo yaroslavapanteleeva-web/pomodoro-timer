@@ -1,0 +1,67 @@
+@import '../base/variables';
+
+.radio {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    &__input {
+        display: none;
+    }
+    &__label {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #EFF1FA;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $font-kumbhSans;
+        font-weight: 700;
+        font-size: 15px;
+        color: $background-main;
+        mix-blend-mode: normal;
+        opacity: 0.73;
+        transition: background .1s;
+        cursor: pointer;
+        &_font_roboto-slab {
+            font-family: $font-robotoSlab;
+            font-weight: 400;
+            line-height: 15px;
+        }
+        &_font_space-mono {
+            font-family: $font-spaceMono;
+            line-height: 15px;
+        }
+        &_color_one {
+            background-color: $color-timer-one;
+        }
+        &_color_two {
+            background-color: $color-timer-two;
+        }
+        &_color_three {
+            background-color: $color-timer-three;
+        }
+        &:hover:before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            top: -5px;
+            border-radius: 50%;
+            border: 1px solid #EFF1FA;
+            transition: .5s;
+        }
+    }
+    &__input:checked + &__label {
+        background-color: $background-element;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+    &__input:checked + &__label_color {
+       background-image: url(../assets/img/check-mark.png);
+       background-position: center center;
+       background-repeat: no-repeat; 
+    }
+}

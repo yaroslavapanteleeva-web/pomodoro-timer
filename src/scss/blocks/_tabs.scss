@@ -1,8 +1,46 @@
 @import '../base/variables';
 
 .tabs {
+    padding: 7px;
     height: 63px;
     width: 373px;
     background: $background-element;
     border-radius: 31.5px;
+    z-index: 1;
+    &__list {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__item {
+        height: 100%;
+        list-style: none;
+        width: 120px;
+        display: flex;
+        justify-content: center;
+    }
+    &__btn {
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        font-family: $font-kumbhSans;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 51px;
+        color: $color-clock-face;
+        mix-blend-mode: normal;
+        opacity: 0.4;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+        &_active {
+            background: $color-timer-one;
+            border-radius: 26.5px;
+            opacity: 1;
+            color: $background-main;
+        }
+    }
 }

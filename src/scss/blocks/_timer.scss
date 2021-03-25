@@ -14,8 +14,34 @@
         border-radius: 50%;
         width: 366px;
         height: 366px;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    &__clock-face {
+        position: absolute;
+        left: 50%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+    }
+    &__btn {
+        margin-top: 20px;
+        border: none;
+        background-color: transparent;
+        font-family: $font-kumbhSans;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1rem;
+        letter-spacing: 15px;
+        color: $color-clock-face;
+        text-transform: uppercase;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            color: $color-timer-one;
+        }
     }
 }
