@@ -1,7 +1,14 @@
 .field {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    & input[type=number] {
+        appearance: none;
+        &::-webkit-inner-spin-button {
+            display: none;
+        }
+    }
     &__label {
         font-family: $font-kumbhSans;
         font-weight: 700;
@@ -12,6 +19,7 @@
         opacity: 0.4;
     }
     &__input {
+        outline: none;
         border: none;
         padding: 15px 16px;
         width: 100%;
@@ -23,5 +31,22 @@
         font-size: 14px;
         line-height: 14px;
         color: $background-main;
+    }
+    &__arrows {
+        position: absolute;
+        right: 16px;
+        top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        & i {
+            font-size: 14px;
+            color: rgba(30, 33, 63, 0.25);
+            cursor: pointer;
+            &:hover {
+                color: rgba(30, 33, 63, 1);
+            }
+        }
     }
 }

@@ -16,6 +16,13 @@
         right: 0;
         background: rgba(10, 12, 28, 0.5);
         z-index: 10;
+        display: none;
+        &.open {
+            display: block;
+        }
+    }
+    &__wrap {
+        position: relative;
     }
     &__header {
         display: flex;
@@ -33,16 +40,35 @@
         color: $background-element;
     }
     &__btn {
+        width: 140px;
+        min-height: 52px;
+        background-color: $color-timer-one;
+        border-radius: 26.5px;
+        outline: none;
+        border: none;
+        font-family: $font-kumbhSans;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 16px;
+        color: #FFFFFF;
+        cursor: pointer;
         &_close {
             color: $background-main;
             mix-blend-mode: normal;
             opacity: 0.5;
-            font-size: 24px;
+            font-size: 26px;
             cursor: pointer;
+            &:hover {
+                opacity: 1;
+            }
+        }
+        &:hover {
+            background-color: rgb(252, 184, 184);
+            transition: .5s all; 
         }
     }
     &__body {
-        padding: 24px 38px;
+        padding: 24px 38px 40px;
     }
     &__block {
         padding-bottom: 24px;
@@ -82,6 +108,13 @@
     }
     &__radio {
         width: 152px;
+    }
+    &__footer {
+        position: absolute;
+        left: 50%;
+        bottom: -26px;
+        transform: translateX(-50%);
+
     }
     
 }

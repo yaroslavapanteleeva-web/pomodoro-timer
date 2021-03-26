@@ -27,8 +27,13 @@
         display: flex;
         flex-direction: column;
     }
-    &__btn {
-        margin-top: 20px;
+    &__btn-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(19px);
+    }
+    &__btn-mode {
         border: none;
         background-color: transparent;
         font-family: $font-kumbhSans;
@@ -40,6 +45,7 @@
         text-transform: uppercase;
         cursor: pointer;
         outline: none;
+        transform: translateX(15px);
         &:hover {
             color: $color-timer-one;
         }

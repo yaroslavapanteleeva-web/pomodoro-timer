@@ -22,7 +22,6 @@
         color: $background-main;
         mix-blend-mode: normal;
         opacity: 0.73;
-        transition: background .1s;
         cursor: pointer;
         &_font_roboto-slab {
             font-family: $font-robotoSlab;
@@ -54,14 +53,15 @@
             transition: .5s;
         }
     }
-    &__input:checked + &__label {
+    &__input:checked + &__label_font {
         background-color: $background-element;
         color: #FFFFFF;
         opacity: 1;
     }
     &__input:checked + &__label_color {
-       background-image: url(../assets/img/check-mark.png);
-       background-position: center center;
-       background-repeat: no-repeat; 
+        background-image: url(../assets/img/check-mark.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        opacity: 1;
     }
 }
