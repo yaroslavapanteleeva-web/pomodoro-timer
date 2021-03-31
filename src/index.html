@@ -10,37 +10,37 @@
     <main class="main">
         <h1 class="main__heading heading">pomodoro</h1>
         <div class="main__tabs tabs">
-            <ul class="tabs__list">
-                <li class="tabs__item"><button class="tabs__btn tabs__btn_active">pomodoro</button></li>
-                <li class="tabs__item"><button class="tabs__btn">short break</button></li>
-                <li class="tabs__item"><button class="tabs__btn">long break</button></li>
+            <ul id="tabs" class="tabs__list">
+                <li class="tabs__item"><button class="tabs__btn tabs__btn_active" data-time="pomodoro">pomodoro</button></li>
+                <li class="tabs__item"><button class="tabs__btn" data-time="short-break">short break</button></li>
+                <li class="tabs__item"><button class="tabs__btn" data-time="long-break">long break</button></li>
             </ul>
         </div>
         <div class="main__timer timer">
-            <div class="timer__wrapper">
+            <div id="timer" class="timer__wrapper">
                 <svg class="timer__progress-bar progress-bar" width="339" height="339">
                     <circle class="progress-bar__circle" cx="169.5" cy="169.5" r="162" stroke-width="11" fill="transparent"></circle>
                 </svg>
                 <div class="timer__clock-face">
                     <div class="clock-face">
-                        <div class="clock-face__mins">17</div>
+                        <div id="mins" class="clock-face__mins">20</div>
                         <div class="clock-face__separator">:</div>
-                        <div class="clock-face__secs">59</div>
+                        <div id="secs" class="clock-face__secs">00</div>
                     </div>
-                    <div class="timer__btn-wrap">
-                        <button id="start" class="timer__btn-mode">START</button> 
-                    </div>
-                    
-                </div>
-                
+                    <div id="btns" class="timer__btn-wrap">
+                        <button id="start" class="timer__btn-mode btn-active">START</button>
+                        <button id="pause" class="timer__btn-mode">Pause</button>
+                        <button id="restart" class="timer__btn-mode">restart</button>
+                    </div>  
+                </div>  
             </div>
         </div>
         <div class="main__settings settings">
             <img src="assets/img/icon-setting.png" alt="settings">
         </div>
-        <div class="modal__overlay">
+        <div id="modal" class="modal__overlay">
             <div class="modal">
-                <div class="modal__wrap">
+                <form class="modal__form">
                     <div class="modal__header">
                         <h2 class="modal__heading">Settings</h2>
                         <span class="modal__btn_close">&times;</span>
@@ -51,57 +51,57 @@
                             <div class="modal__items">
                                 <div class="modal__field field">
                                     <label for="" class="field__label">pomodoro</label>
-                                    <input min="1" value="25" type="number" class="field__input">
+                                    <input min="1" value="25" type="number" class="field__input" id="pomodoro">
                                     <div class="field__arrows">
-                                        <i class="fas fa-chevron-up"></i>
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up" data-up></i>
+                                        <i class="fas fa-chevron-down" data-down></i>
                                     </div>
                                 </div>
                                 <div class="modal__field field">
                                     <label for="" class="field__label">short break</label>
-                                    <input min="1" value="5" type="number" class="field__input">
+                                    <input min="1" value="5" type="number" class="field__input" id="short-break">
                                     <div class="field__arrows">
-                                        <i class="fas fa-chevron-up"></i>
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up" data-up></i>
+                                        <i class="fas fa-chevron-down" data-down></i>
                                     </div>
                                 </div>
                                 <div class="modal__field field">
                                     <label for="" class="field__label">long break</label>
-                                    <input min="1" value="15" type="number" class="field__input">
+                                    <input min="1" value="15" type="number" class="field__input" id="long-break">
                                     <div class="field__arrows">
-                                        <i class="fas fa-chevron-up"></i>
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up" data-up></i>
+                                        <i class="fas fa-chevron-down" data-down></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal__block modal__block_position">
                             <h3 class="modal__subheading">FONT</h3>
-                            <div class="modal__radio radio">
-                                <input type="radio" class="radio__input" value="kumbhSans" name="font" id="font-kumbhSans" checked>
+                            <div id="radio-font" class="modal__radio radio">
+                                <input type="radio" class="radio__input" value="Kumbh Sans" name="font" id="font-kumbhSans" checked>
                                 <label for="font-kumbhSans" class="radio__label radio__label_font radio__label_font_kumbh-sans">Aa</label>
-                                <input type="radio" class="radio__input" value="robotoSlab" name="font" id="font-robotoSlab">
+                                <input type="radio" class="radio__input" value="Roboto Slab" name="font" id="font-robotoSlab">
                                 <label for="font-robotoSlab" class="radio__label radio__label_font radio__label_font_roboto-slab">Aa</label>
-                                <input type="radio" class="radio__input" value="spaceMono" name="font" id="font-spaceMono">
+                                <input type="radio" class="radio__input" value="Space Mono" name="font" id="font-spaceMono">
                                 <label for="font-spaceMono" class="radio__label radio__label_font radio__label_font_space-mono">Aa</label>
                             </div>
                         </div>
                         <div class="modal__block modal__block_position">
                             <h3 class="modal__subheading">COLOR</h3>
-                            <div class="modal__radio radio">
-                                <input type="radio" class="radio__input" value="color-one" name="color" id="timer-one" checked>
+                            <div id="radio-color" class="modal__radio radio">
+                                <input type="radio" class="radio__input" value="#F87070" name="color" id="timer-one" data-color checked>
                                 <label for="timer-one" class="radio__label radio__label_color radio__label_color_one"></label>
-                                <input type="radio" class="radio__input" value="color-two" name="color" id="timer-two">
+                                <input type="radio" class="radio__input" value="#70F3F8" name="color" id="timer-two" data-color>
                                 <label for="timer-two" class="radio__label radio__label_color radio__label_color_two"></label>
-                                <input type="radio" class="radio__input" value="color-three" name="color" id="timer-three">
+                                <input type="radio" class="radio__input" value="#D881F8" name="color" id="timer-three" data-color>
                                 <label for="timer-three" class="radio__label radio__label_color radio__label_color_three"></label>
                             </div>
                         </div>
                     </div>
                     <div class="modal__footer">
-                        <button class="modal__btn">Apply</button>
+                        <button id="close-modal" class="modal__btn">Apply</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </main>

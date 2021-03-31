@@ -22,7 +22,7 @@
     &__clock-face {
         position: absolute;
         left: 50%;
-        top: 55%;
+        top: 50%;
         transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
@@ -34,6 +34,7 @@
         transform: translateY(19px);
     }
     &__btn-mode {
+        display: none;
         border: none;
         background-color: transparent;
         font-family: $font-kumbhSans;
@@ -46,8 +47,22 @@
         cursor: pointer;
         outline: none;
         transform: translateX(15px);
+        transition: .5s ease-in-out;
         &:hover {
             color: $color-timer-one;
+        }
+        &.btn_color_two {
+            &:hover {
+                color: $color-timer-two;
+            }
+        }
+        &.btn_color_three {
+            &:hover {
+                color: $color-timer-three;
+            }
+        }
+        &.btn-active {
+            display: block;
         }
     }
 }
