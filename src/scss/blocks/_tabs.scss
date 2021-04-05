@@ -33,6 +33,7 @@
         mix-blend-mode: normal;
         opacity: 0.4;
         cursor: pointer;
+        transition: opacity .5s ease-in;
         &:hover {
             opacity: 1;
         }
@@ -41,6 +42,7 @@
             border-radius: 26.5px;
             opacity: 1;
             color: $background-main;
+            transition: background-color .5s linear, opacity 1.5s ease-in-out;
         }
     }
 }

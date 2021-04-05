@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro</title>
+    <title>pomodoro</title>
     <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
 </head>
 <body>
@@ -11,19 +11,20 @@
         <h1 class="main__heading heading">pomodoro</h1>
         <div class="main__tabs tabs">
             <ul id="tabs" class="tabs__list">
-                <li class="tabs__item"><button class="tabs__btn tabs__btn_active" data-time="pomodoro">pomodoro</button></li>
+                <li class="tabs__item"><button class="tabs__btn tabs__btn_active " data-time="pomodoro">pomodoro</button></li>
                 <li class="tabs__item"><button class="tabs__btn" data-time="short-break">short break</button></li>
-                <li class="tabs__item"><button class="tabs__btn" data-time="long-break">long break</button></li>
+                <li class="tabs__item"><button class="tabs__btn " data-time="long-break">long break</button></li>
             </ul>
         </div>
         <div class="main__timer timer">
             <div id="timer" class="timer__wrapper">
+                <audio src="https://zvukipro.com/uploads/files/2018-11/1541268464_timer-bell_m1tycbno.mp3" class="timer__bell"></audio>
                 <svg class="timer__progress-bar progress-bar" width="339" height="339">
                     <circle class="progress-bar__circle" cx="169.5" cy="169.5" r="162" stroke-width="11" fill="transparent"></circle>
                 </svg>
                 <div class="timer__clock-face">
                     <div class="clock-face">
-                        <div id="mins" class="clock-face__mins">20</div>
+                        <div id="mins" class="clock-face__mins"></div>
                         <div class="clock-face__separator">:</div>
                         <div id="secs" class="clock-face__secs">00</div>
                     </div>
@@ -36,7 +37,7 @@
             </div>
         </div>
         <div class="main__settings settings">
-            <img src="assets/img/icon-setting.png" alt="settings">
+            <button class="settings__btn"></button>
         </div>
         <div id="modal" class="modal__overlay">
             <div class="modal">

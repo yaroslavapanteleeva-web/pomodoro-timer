@@ -3,17 +3,8 @@
 .progress-bar {
     &__circle {
         stroke: $color-timer-one;
-        transition: .5s;
         transform: rotate(270deg);
         transform-origin: 50% 50%;
+        transition: stroke-dashoffset 1s;
     }
 }
-
-/* .danger {
-    stroke: transparent;
-    animation: pulse 0.9s ease-in-out infinite;
-}
-
-@keyframes pulse {
-
-} */

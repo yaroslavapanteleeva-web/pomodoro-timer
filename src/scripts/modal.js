@@ -1,17 +1,20 @@
+import {open, close} from './utils';
+
 window.addEventListener('DOMContentLoaded', () => {
     const $btnOpenModal = document.querySelector('.settings');
     const $modal = document.querySelector('#modal');
-    const $btnCloseModal = document.querySelector('.modal__btn_close');
-    const $btnClose = document.querySelector('#close-modal');
+    const $btnCloseModalX = $modal.querySelector('.modal__btn_close');
+    const $btnCloseModal = $modal.querySelector('#close-modal');
+
 
     $btnOpenModal.addEventListener('click', () => {
-        $modal.classList.add('open');
+        open($modal);
+    })
+    $btnCloseModalX.addEventListener('click', () => {
+        close($modal);
     })
     $btnCloseModal.addEventListener('click', () => {
-        $modal.classList.remove('open')
-    })
-    $btnClose.addEventListener('click', () => {
-        $modal.classList.remove('open')
+        close($modal);
     })
 
 });

@@ -1,7 +1,15 @@
 .settings {
-    cursor: pointer;
-    opacity: .5;
-    &:hover {
-       opacity: 1;
+    &__btn {
+        width: 28px;
+        height: 28px;
+        background: url('~assets/img/icon-setting.png') center center no-repeat;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity .5s ease-in-out;
+        &:hover {
+            opacity: 1;
+        }
     }
 }
