@@ -1,93 +1,133 @@
-import { setProgress } from "./progressbar";
+import { setProgress } from "./progress-bar";
+import { hiddenBtn, visibleBtn } from "./utils";
 
 window.addEventListener('DOMContentLoaded', () => {
-    const $timer = document.querySelector('#timer');
-    const $tabs = document.querySelector('#tabs');
-    const $btnStart = document.querySelector('#start');
-    const $btnPause = document.querySelector('#pause');
-    const $btnRestart = document.querySelector('#restart');
+    // input active
+    const $pomodoroInput = document.querySelector('#pomodoro');
+    // time
     const $minutes = document.querySelector('#mins');
     const $seconds = document.querySelector('#secs');
+    // btn timer
+    const $startBtn = document.querySelector('#start');
+    const $pauseBtn = document.querySelector('#pause');
+    const $restartBtn = document.querySelector('#restart');
+    const $bellTimer = document.querySelector('.timer__bell');
 
-    let startMins = $minutes.textContent;
+    const $submitBtn = document.querySelector('.modal__btn');
+    const $tabsBtn = document.querySelectorAll('.tabs__btn');
+    const $timeInputs = document.querySelectorAll('.field__input');
 
-    let totalTime = startMins * 60;
-    let time = startMins * 60;
+    let paused, initial, totalSecs, secs;
 
-    let initial, paused;
+    $tabsBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            $tabsBtn.forEach(btn => {
+                btn.classList.remove('tabs__btn_active');
+            });
+            btn.classList.add('tabs__btn_active');
+            if (btn.classList.contains('tabs__btn_active')) {
+                const mode = e.target.dataset.time;
+                $timeInputs.forEach(input => {
+                    if (mode === input.id) {
+                        clearTimeout(initial);
+                        setProgress(100);
+                        $seconds.textContent = `${0}0`;
+                        $minutes.textContent = 0;
+                        $minutes.textContent = input.value;
+                        
+                        if (!($minutes.textContent.charAt(0) == '0') && $minutes.textContent < 10) {
+                            $minutes.textContent = `0${$minutes.textContent}`;
+                        } else {
+                            $minutes.textContent = $minutes.textContent;
+                        }
 
-    function decrementT() {
-        let minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-        seconds = seconds < 10 ? `0${seconds}` : seconds;
-        minutes = minutes < 10 ? `0${minutes}` : minutes;
+                        const mins = +$minutes.textContent;
+                        totalSecs = mins * 60;
+                        secs = mins * 60;
+                        
+                        visibleBtn($startBtn);
+                        hiddenBtn($pauseBtn);
+                        hiddenBtn($restartBtn);
+                    }
+                })
 
-        $minutes.innerHTML = minutes;
-        $seconds.innerHTML = seconds;
-        if (time > 0) {
-            let persent = Math.floor(time * 100 / totalTime);
-            setProgress(persent);
-            time--;
-            initial = setTimeout(decrementT, 1000);
-        } else {
-            $btnRestart.classList.add('btn-active');
-            $btnPause.classList.remove('btn-active');
-            clearTimeout(initial);
-            setProgress(100);
-        }
-    }
-
-    $btnStart.addEventListener('click', (e) => {
-        setTimeout(decrementT, 10);
-        $btnStart.classList.remove('btn-active');
-        $btnPause.classList.add('btn-active');
-        paused = false;
-
+            }
+        })
     })
-    $btnPause.addEventListener('click', () => {
+
+
+
+    $submitBtn.addEventListener('click', (e) => {
+        $tabsBtn.forEach(btn => {
+            if (btn.classList.contains('tabs__btn_active')) {
+                const attr = btn.getAttribute('data-time');
+                $timeInputs.forEach(input => {
+                    if (attr === input.id) {
+                        $minutes.textContent = input.value < 10 ? `0${input.value}` : input.value;
+                    }
+                })
+            }
+        })
+        const mins = +$minutes.textContent;
+        totalSecs = mins * 60;
+        secs = mins * 60;
+    })
+
+    $minutes.textContent = $pomodoroInput.value < 10 ? `0${$pomodoroInput.value}` : $pomodoroInput.value;
+    
+    const mins = +$minutes.textContent;
+    totalSecs = mins * 60;
+    secs = mins * 60;
+
+    $startBtn.addEventListener('click', (e) => {
+        setTimeout(timer, 60);
+        hiddenBtn($startBtn);
+        visibleBtn($pauseBtn);
+        paused = false;
+    });
+
+    $pauseBtn.addEventListener('click', () => {
         if (paused === undefined) {
             return;
         }
         if (paused) {
             paused = false;
-            initial = setTimeout(decrementT, 10);
+            initial = setTimeout(timer, 60);
         } else {
-            $btnStart.classList.add('btn-active');
-            $btnPause.classList.remove('btn-active');
+            visibleBtn($startBtn);
+            hiddenBtn($pauseBtn);
             clearTimeout(initial);
             paused = true;
         }
-    })
-    $btnRestart.addEventListener('click', () => {
-        $btnRestart.classList.remove('btn-active');
-        $btnPause.classList.add('btn-active');
-        startMins = 20;
-        time = startMins * 60;
-        totalTime = startMins * 60;
-        setTimeout(decrementT, 10);
-        paused = false;
-        
-    })
-    /* $tabs.addEventListener('click', (e) => {
-        const modeTime = e.target.dataset.time;
-        switch (modeTime) {
-            case 'short-break':
-                startMins = 5;
-                time = startMins * 60;
-                totalTime = startMins * 60;
-                break;
-            case 'long-break':
-                startMins = 15;
-                time = startMins * 60;
-                totalTime = startMins * 60;
-                break;
-            default:
-                startMins = 20;
-                time = startMins * 60;
-                totalTime = startMins * 60;
-                break;
-        }
+    });
 
-    }) */
-    
+    $restartBtn.addEventListener('click', () => {
+        secs = totalSecs;
+        hiddenBtn($restartBtn);
+        visibleBtn($pauseBtn);
+        setTimeout(timer, 60);
+        paused = false;
+    });
+
+    function timer() {
+        let minutes = Math.floor(secs / 60);
+        let seconds = secs % 60;
+        seconds = seconds < 10 ? `0${seconds}` : seconds;
+        minutes = minutes < 10 ? `0${minutes}` : minutes;
+        $minutes.textContent = minutes;
+        $seconds.textContent = seconds;
+        if (secs > 0) {
+            let percent = Math.floor(secs * 100 / totalSecs);
+            setProgress(percent);
+            secs--;
+            initial = setTimeout(timer, 1000);
+        } else {
+            minutes = 0;
+            seconds = 0;
+            $bellTimer.play();
+            visibleBtn($restartBtn);
+            hiddenBtn($pauseBtn);
+            setProgress(100);
+        }
+    }
 });

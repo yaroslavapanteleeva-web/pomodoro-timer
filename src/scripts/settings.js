@@ -1,16 +1,15 @@
 window.addEventListener('DOMContentLoaded', () => {
-    
-    const $form = document.querySelector('.modal__form');
     const $parentInput = document.querySelector('.modal__items');
-    //
+    const $form = document.querySelector('.modal__form');
+
     const $circleColor = document.querySelector('.progress-bar__circle');
+    const $clock = document.querySelector('.clock-face');
+    const $clockBtns = document.querySelectorAll('.timer__btn-mode');
+
     const $tabs = document.querySelectorAll('.tabs__btn');
 
-    const $clock = document.querySelector('.clock-face');
-    const $btnClock = document.querySelector('.timer__btn-mode');
-
     $parentInput.addEventListener('click', (e) => {
-        const input = e.path[2].children[1];
+        const input = e.target.parentElement.parentElement.children[1];
         if (e.target.matches('[data-up]')) {
             input.value++;
         }
@@ -18,31 +17,43 @@ window.addEventListener('DOMContentLoaded', () => {
             input.value--;
         }
 
+        if (input.value < 1) {
+            input.value = 1;
+        }
     })
 
     $form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const colorRadio = $form.elements.color.value;
-        const fontRadio = $form.elements.font.value;
-        const pomodoroInput = $form.elements.pomodoro.value;
-        const shorkBreakInput = $form.elements['short-break'].value;
-        const longBreakInput = $form.elements['long-break'].value;
+        const colorRadioValue = $form.elements.color.value;
+        const fontRadioValue = $form.elements.font.value;
 
-        function initialState(colorRadio = '#F87070') {
-            localStorage.setItem('color-radio', colorRadio);
-        }
-        initialState(colorRadio);
-        
-        $circleColor.style.stroke = colorRadio;
+        $circleColor.style.stroke = colorRadioValue;
+        $clock.style.fontFamily = fontRadioValue;
 
         $tabs.forEach(tab => {
-            if(tab.classList.contains('tabs__btn_active')) {
-                tab.style.backgroundColor = colorRadio; 
+            if (tab.classList.contains('tabs__btn_active')) {
+                tab.style.backgroundColor = colorRadioValue;
+            } else {
+                tab.style.backgroundColor = 'transparent';
             }
-            tab.style.fontFamily = fontRadio;
+            tab.addEventListener('click', () => {
+                $tabs.forEach(tab => {
+                    tab.style.backgroundColor = 'transparent';
+                })
+                tab.style.backgroundColor = colorRadioValue;
+            })
+            tab.style.fontFamily = fontRadioValue; 
         })
-        $clock.style.fontFamily = fontRadio;
-        $btnClock.style.fontFamily = fontRadio;
 
-    });
+        $clockBtns.forEach(btn => {
+            btn.addEventListener('mouseover', () => {
+                btn.style.color = colorRadioValue;
+            })
+            btn.addEventListener('mouseout', () => {
+                btn.style.color = '#D7E0FF';
+            })
+            btn.style.fontFamily = fontRadioValue;
+        })
+
+    })
 });
